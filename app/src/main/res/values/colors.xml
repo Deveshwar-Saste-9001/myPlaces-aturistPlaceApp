@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="casal">#2e636f</color>
+    <color name="granny_apple">#dbf6ea</color>
+    <color name="tan_hide">#f7965a</color>
+    <color name="bay_leaf">#85ba85</color>
+    <color name="salt_box">#68636b</color>
+    <color name="spicy_mix">#947653</color>
+    <color name="piper">#d06126</color>
+    <color name="half_baked">#8accd3</color>
+    <color name="gurkha">#959774</color>
+    <color name="apptheme">#34AEC0</color>
+    <color name="colorPrimary">#34AEC0</color>
+    <color name="colorPrimaryDark">#d06126</color>
+    <color name="colorSecondary">#947653</color>
+</resources>
