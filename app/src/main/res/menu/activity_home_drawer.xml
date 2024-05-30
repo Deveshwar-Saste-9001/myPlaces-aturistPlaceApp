@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_Home"
+            android:icon="@drawable/baseline_home_24"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_Attendance"
+            android:icon="@drawable/baseline_favorite_24"
+            android:title="My Places" />
+        <item
+            android:id="@+id/nav_DailyLogs"
+            android:icon="@drawable/baseline_account_box_24"
+            android:title="My Account" />
+
+        <item
+            android:id="@+id/nav_AboutUs"
+            android:icon="@drawable/baseline_drive_file_rename_outline_24"
+            android:title="About Us" />
+        <item
+            android:id="@+id/nav_ContactUs"
+            android:icon="@drawable/baseline_contact_phone_24"
+            android:title="Contact Us" />
+        <item
+            android:id="@+id/nav_logOut"
+android:icon="@drawable/baseline_content_paste_go_24"
+            android:title="Logout" />
+    </group>
+
+</menu>
