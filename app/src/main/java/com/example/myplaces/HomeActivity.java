@@ -1,4 +1,7 @@
 package com.example.myplaces;
+import static com.example.myplaces.DatabaseFiles.DatabaseCodes.MyFavlists;
+import static com.example.myplaces.DatabaseFiles.DatabaseCodes.loadWishList;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,9 +19,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myplaces.Adaptors.MiniPlacesAdaptor;
 import com.example.myplaces.DatabaseFiles.DatabaseCodes;
+import com.example.myplaces.Fragments.ChangePassFragment;
 import com.example.myplaces.Fragments.HomeFragment;
-import com.example.myplaces.Fragments.SchoolFragment;
+import com.example.myplaces.Fragments.MyPlacesFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
@@ -35,8 +40,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
     private FrameLayout frameLayout;
     private static final int HOME_FRAGMENT = 0;
     private NavigationView navigationView;
-    private static final int SCHOOLS_FRAGMENT = 1;
-    private static final int ATTENDANCE_FRAGMENT = 2;
+    private static final int MYPLACESFRAGMENT = 1;
+    private static final int CHANGEPASSFRAGMENT = 2;
     private FirebaseUser CurrentUser;
     private static final int CONTACT_US = 8;
     private int currentFragment = -1;
@@ -97,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
                     DatabaseCodes.email = task.getResult().getString("Email");
                     DatabaseCodes.username = task.getResult().getString("Name");
                     DatabaseCodes.location = task.getResult().getString("Location");
-
+                    DatabaseCodes.role = task.getResult().getString("Role");
                     FullName.setText(DatabaseCodes.username);
                     email.setText(DatabaseCodes.email);
                    // location.setText(DatabaseCodes.location);
@@ -123,6 +128,8 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_notification) {
+            Intent searchIntent=new Intent(HomeActivity.this,SearchPlacesActivity.class);
+            startActivity(searchIntent);
             return true;
         } else if (id == R.id.action_logout) {
             FirebaseAuth.getInstance().signOut();
@@ -142,16 +149,12 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_Home) {
-            gotoFragment("OMOTEC", new HomeFragment(), HOME_FRAGMENT);
+            gotoFragment("Trip Treasure", new HomeFragment(), HOME_FRAGMENT);
         } else if (id == R.id.nav_Attendance) {
-
+            gotoFragment("My Places", new MyPlacesFragment(), MYPLACESFRAGMENT);
         } else if (id == R.id.nav_DailyLogs) {
-//4
-        }  else if (id == R.id.nav_AboutUs) {
-//7
-        } else if (id == R.id.nav_ContactUs) {
-
-        } else if (id == R.id.nav_logOut) {
+            gotoFragment("My Account", new ChangePassFragment(), CHANGEPASSFRAGMENT);
+        }   else if (id == R.id.nav_logOut) {
             FirebaseAuth.getInstance().signOut();
             Paper.book().delete("user");
             Intent mainmenuIntent=new Intent(HomeActivity.this,MainMenuActivity.class);

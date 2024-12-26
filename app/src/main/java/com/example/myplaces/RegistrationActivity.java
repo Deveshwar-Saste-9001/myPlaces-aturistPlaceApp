@@ -196,7 +196,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
                                                     //////
                                                     final List<String> documentsNames = new ArrayList<>();
-                                                    documentsNames.add("MY_NOTIFICATIONS");
+                                                    documentsNames.add("MY_FAV");
 
                                                     List<Map<String, Object>> documentsFields = new ArrayList<>();
                                                     documentsFields.add(notificationMap);

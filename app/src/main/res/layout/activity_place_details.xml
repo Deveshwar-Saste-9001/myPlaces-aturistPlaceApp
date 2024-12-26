@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d5d5d5"
+    tools:context=".PlaceDetailsActivity">
+
+
+
+    <Button
+        android:id="@+id/getDirectionBtn"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/white"
+        android:text="Direction"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/Donateow"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/Donateow"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Donate"
+        android:textColor="#ffffff"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/getDirectionBtn" />
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppBarOverlay"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/Viewplacetoolbar"
+                android:layout_width="match_parent"
+                android:backgroundTint="@color/colorPrimary"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/PopupOverlay" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/getDirectionBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
+            app:layout_constraintVertical_bias="1.0">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#d5d5d5"
+                android:orientation="vertical">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/placewishlist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+android:layout_marginEnd="20dp"
+                    android:src="@drawable/addtofavicon"
+
+                    android:backgroundTint="@color/colorPrimary"
+                    app:layout_constraintBottom_toBottomOf="@+id/placeimagefull"
+                    app:layout_constraintEnd_toEndOf="parent" />
+                <ImageView
+                    android:id="@+id/placeimagefull"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/tajmahalagra"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/placeTitleFull"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="casual"
+                    android:paddingStart="4dp"
+                    android:text="Place title"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/placeimagefull" />
+
+                <TextView
+                    android:id="@+id/placeAddressFull"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:lines="3"
+                    android:textColor="@color/black"
+                    android:padding="4dp"
+                    android:text="State,Country,pincode"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/placeTitleFull" />
+
+                <LinearLayout
+                    android:id="@+id/liniar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:backgroundTint="@color/white"
+                    android:layout_marginEnd="8dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/placeAddressFull">
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/slider_background"
+                        android:backgroundTint="#ff00a00f"
+                        android:orientation="horizontal"
+                        android:padding="2dp">
+
+                        <TextView
+                            android:id="@+id/tv_product_rating_miniView_wish1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="2.0dip"
+                            android:layout_marginEnd="2.0dip"
+                            android:text="4.5"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="15.0dip"
+                            android:layout_height="15.0dip"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="2.0dip"
+                            android:layout_marginEnd="2.0dip"
+                            android:src="@drawable/ic_star_black_24dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_margin="8dp"
+                    android:background="#B6B5B5"
+                    app:layout_constraintTop_toBottomOf="@id/liniar"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <TextView
+                    android:id="@+id/descriptitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Description"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider" />
+
+                <TextView
+                    android:id="@+id/placeDecriptiontext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:lines="5"
+
+                    android:textColor="@color/black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/translate"
+                    app:layout_constraintTop_toBottomOf="@id/descriptitle" />
+
+
+                <LinearLayout
+                    android:id="@+id/translate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/placeDecriptiontext"
+android:layout_margin="8dp"
+                    android:padding="10dp"
+                    >
+
+                    <Spinner
+                        android:id="@+id/spinner_language_to"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:padding="10dp"
+                        android:background="@drawable/background_left"
+                        android:spinnerMode="dropdown" />
+
+                    <Button
+                        android:id="@+id/button_translate"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:text="Translate"
+                        android:textAlignment="center"
+                        android:textSize="16sp"
+                        android:background="@drawable/background_right"
+                        android:layout_weight="1" />
+
+                </LinearLayout>
+
+
+
+                <View
+                    android:id="@+id/divider33"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_margin="8dp"
+                    android:background="#B6B5B5"
+                    app:layout_constraintTop_toBottomOf="@+id/translate"
+                    tools:layout_editor_absoluteX="0dp" />
+
+
+                <ProgressBar
+                    android:id="@+id/roadprogressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:max="100"
+                    android:progress="50"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Road"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider33" />
+
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="Low"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/roadprogressbar"
+                    app:layout_constraintTop_toBottomOf="@+id/roadprogressbar" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="high"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/roadprogressbar" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="medium"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/textView10"
+                    app:layout_constraintStart_toEndOf="@+id/textView9"
+                    app:layout_constraintTop_toTopOf="@+id/textView10" />
+
+
+                <ProgressBar
+                    android:id="@+id/sefetyProgressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:max="100"
+                    android:textColor="@color/black"
+                    android:progress="50"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView3"
+                    app:layout_constraintTop_toBottomOf="@id/textView123" />
+
+
+                <TextView
+                    android:id="@+id/textView133"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="safe"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/sefetyProgressbar"
+                    app:layout_constraintTop_toBottomOf="@+id/sefetyProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView143"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="dangerous"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/sefetyProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView123"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Sefety Level"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                <TextView
+                    android:id="@+id/textView113"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mild"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/textView143"
+                    app:layout_constraintStart_toEndOf="@+id/textView133"
+                    app:layout_constraintTop_toTopOf="@+id/textView143" />
+
+                <TextView
+                    android:id="@+id/textView124"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tourist Level"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView113" />
+
+                <ProgressBar
+                    android:id="@+id/toristProgressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:max="100"
+                    android:textColor="@color/black"
+                    android:progress="50"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView4"
+                    app:layout_constraintTop_toBottomOf="@id/textView124" />
+
+                <TextView
+                    android:id="@+id/textView95"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="hidden"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/toristProgressbar"
+                    app:layout_constraintTop_toBottomOf="@+id/toristProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView105"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="crowdy"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toristProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView115"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="known"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/textView105"
+                    app:layout_constraintStart_toEndOf="@+id/textView95"
+                    app:layout_constraintTop_toBottomOf="@+id/toristProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView126"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Adventure Level"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView115" />
+
+                <ProgressBar
+                    android:id="@+id/AdventureProgressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:max="100"
+                    android:textColor="@color/black"
+                    android:progress="50"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView5"
+                    app:layout_constraintTop_toBottomOf="@id/textView126" />
+
+                <TextView
+                    android:id="@+id/textView96"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="safe"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/AdventureProgressbar"
+                    app:layout_constraintTop_toBottomOf="@+id/AdventureProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView106"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="risky"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/AdventureProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView116"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="Mid"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/textView106"
+                    app:layout_constraintStart_toEndOf="@+id/textView96"
+                    app:layout_constraintTop_toBottomOf="@+id/AdventureProgressbar" />
+
+
+                <TextView
+                    android:id="@+id/textView127"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Cost Level"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView116" />
+
+                <ProgressBar
+                    android:id="@+id/costProgressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:max="100"
+                    android:textColor="@color/black"
+                    android:progress="50"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView6"
+                    app:layout_constraintTop_toBottomOf="@id/textView127" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView123"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView8"
+                    app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView124"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView123"
+                    app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView126"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView124"
+                    app:srcCompat="@drawable/ic_supervisor_account_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintBottom_toTopOf="@+id/textView127"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView126"
+                    app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView127"
+                    app:srcCompat="@drawable/ic_play_arrow_black_24dp" />
+
+                <TextView
+                    android:id="@+id/textView97"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="free"
+                    android:textColor="@color/black"
+                    app:layout_constraintStart_toStartOf="@+id/costProgressbar"
+                    app:layout_constraintTop_toBottomOf="@+id/costProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView107"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="expensive"
+                    android:textColor="@color/black"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/costProgressbar" />
+
+                <TextView
+                    android:id="@+id/textView117"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:text="cheap"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toStartOf="@+id/textView107"
+                    app:layout_constraintStart_toEndOf="@+id/textView97"
+                    app:layout_constraintTop_toBottomOf="@+id/costProgressbar" />
+
+                <View
+                    android:id="@+id/divider44"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="#B6B5B5"
+                    app:layout_constraintTop_toBottomOf="@id/textView117"
+                    tools:layout_editor_absoluteX="0dp" />
+
+
+
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

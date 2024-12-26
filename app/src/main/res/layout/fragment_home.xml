@@ -9,16 +9,16 @@
     android:background="#d6d6d6"
     tools:context=".Fragments.HomeFragment">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/categoryRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginHorizontal="4dp"
             android:background="#B9B9B9" />
 
-    </ScrollView>
+
 
 </FrameLayout>

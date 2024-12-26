@@ -1,6 +1,8 @@
 package com.example.myplaces;
 
+import static com.example.myplaces.DatabaseFiles.DatabaseCodes.loadFragmentData;
 import static com.example.myplaces.DatabaseFiles.DatabaseCodes.loadedCategoriesNames;
+import static com.example.myplaces.DatabaseFiles.DatabaseCodes.role;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,7 +29,6 @@ public class CategoryActivity extends AppCompatActivity {
     private String categoryTitle;
     private PlacesAdaptor adapter;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,9 @@ public class CategoryActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(categoryTitle);
 
         requestNewplace = findViewById(R.id.addplaceBtn);
+        if (role.equalsIgnoreCase("admin")) {
+            requestNewplace.setVisibility(View.VISIBLE);
+        }
         placesRecyclerViewNew = findViewById(R.id.placesRecyclerviewNew);
 
         categoryTitle = getIntent().getStringExtra("CategoryName");
@@ -55,9 +59,6 @@ public class CategoryActivity extends AppCompatActivity {
         LinearLayoutManager LayoutManager = new LinearLayoutManager(this);
         LayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         placesRecyclerViewNew.setLayoutManager(LayoutManager);
-
-//        adapter = new PlacesAdaptor(homePageModelFakeList);
-
 
         int listPosition = 0;
         for (int x = 0; x < loadedCategoriesNames.size(); x++) {
@@ -76,10 +77,6 @@ public class CategoryActivity extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
 
-
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(CategoryActivity.this);
-//        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        placesRecyclerViewNew.setLayoutManager(linearLayoutManager);
     }
 
     @Override

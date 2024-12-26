@@ -17,6 +17,12 @@ volley = "1.2.1"
 playServicesLocation = "21.2.0"
 paperdb = "2.7.2"
 firebaseStorage = "21.0.0"
+paypalAndroidSdk = "2.16.0"
+translate = "17.0.2"
+firebaseMlNaturalLanguage = "22.0.1"
+firebaseMlNaturalLanguageLanguageIdModel = "20.0.8"
+firebaseMlNaturalLanguageTranslate = "22.0.2"
+firebaseMlNaturalLanguageTranslateModel = "20.0.9"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -36,6 +42,12 @@ volley = { group = "com.android.volley", name = "volley", version.ref = "volley"
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }
 paperdb = { group = "io.github.pilgr", name = "paperdb", version.ref = "paperdb" }
 firebase-storage = { group = "com.google.firebase", name = "firebase-storage", version.ref = "firebaseStorage" }
+paypal-android-sdk = { group = "com.paypal.sdk", name = "paypal-android-sdk", version.ref = "paypalAndroidSdk" }
+translate = { group = "com.google.mlkit", name = "translate", version.ref = "translate" }
+firebase-ml-natural-language = { group = "com.google.firebase", name = "firebase-ml-natural-language", version.ref = "firebaseMlNaturalLanguage" }
+firebase-ml-natural-language-language-id-model = { group = "com.google.firebase", name = "firebase-ml-natural-language-language-id-model", version.ref = "firebaseMlNaturalLanguageLanguageIdModel" }
+firebase-ml-natural-language-translate = { group = "com.google.firebase", name = "firebase-ml-natural-language-translate", version.ref = "firebaseMlNaturalLanguageTranslate" }
+firebase-ml-natural-language-translate-model = { group = "com.google.firebase", name = "firebase-ml-natural-language-translate-model", version.ref = "firebaseMlNaturalLanguageTranslateModel" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

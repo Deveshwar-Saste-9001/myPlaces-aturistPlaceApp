@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/apptheme"
+    android:background="@color/colorPrimary"
     tools:context=".MainMenuActivity">
 
     <ImageView
@@ -20,8 +20,8 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="510dp"
-        android:background="@drawable/wavehaikei"
+        android:layout_height="630dp"
+        android:background="@drawable/wavehaikei1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView2" />
@@ -31,7 +31,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="397dp"
-        android:text="Best Place To find Tourist Places Near"
+        android:textAlignment="center"
+        android:text="Best Place To find Tourist Places"
         android:textColor="@color/white"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -45,9 +46,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
-        android:text="YOU!!"
+        android:text="Near YOU!!"
         android:textAlignment="center"
-        android:textColor="@color/spicy_mix"
+        android:textColor="@color/colorPrimaryDark"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

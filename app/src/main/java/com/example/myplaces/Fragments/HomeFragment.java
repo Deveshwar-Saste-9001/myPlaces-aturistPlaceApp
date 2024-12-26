@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myplaces.Adaptors.CategoryAdapter;
 import com.example.myplaces.DatabaseFiles.DatabaseCodes;
 import com.example.myplaces.R;
+import com.google.android.material.shape.CornerFamily;
 
 
 /**

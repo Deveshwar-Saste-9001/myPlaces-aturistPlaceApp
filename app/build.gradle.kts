@@ -1,3 +1,6 @@
+import org.gradle.internal.impldep.com.amazonaws.PredefinedClientConfigurations.defaultConfig
+
+
 plugins {
     alias(libs.plugins.androidApplication)
     id("com.google.gms.google-services")
@@ -16,6 +19,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
+
 
     buildTypes {
         release {
@@ -44,6 +48,10 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.paperdb)
     implementation(libs.firebase.storage)
+    implementation(libs.firebase.ml.natural.language)
+    implementation(libs.firebase.ml.natural.language.language.id.model)
+    implementation(libs.firebase.ml.natural.language.translate.model)
+    implementation(libs.firebase.ml.natural.language.translate)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
