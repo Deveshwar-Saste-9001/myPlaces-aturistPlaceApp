@@ -12,10 +12,14 @@
     <color name="half_baked">#8accd3</color>
     <color name="gurkha">#959774</color>
     <color name="apptheme">#34AEC0</color>
-    <color name="colorPrimary">#34AEC0</color>
+    <color name="colorPrimary">#858fb4</color>
+<!--    <color name="colorPrimaryDark">#ccd1db</color>-->
+    <color name="colorSecondary">#ebbac2</color>
+    <color name="colorAccent">#f5f2f0</color>
+    <color name="colorPrimary1">#34AEC0</color>
     <color name="colorPrimaryDark">#d06126</color>
-    <color name="colorSecondary">#947653</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorSecondary1">#947653</color>
+    <color name="colorAccent1">#D81B60</color>
     <color name="colorRed">#F00000</color>
     <color name="successGreen">#11A10c</color>
     <color name="RecyclerViewBack">#b6b6b6</color>

@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.myplaces.CategoryActivity;
 import com.example.myplaces.Models.CategoryModel;
-import com.example.myplaces.ProductDetailsActivity;
 import com.example.myplaces.R;
 
 import java.util.List;

@@ -4,7 +4,7 @@ import static android.app.PendingIntent.getActivity;
 import static android.os.Build.VERSION;
 import static android.os.Build.VERSION_CODES;
 
-import static com.example.myplaces.R.id.selectImage;
+import static com.example.myplaces.R.id;
 
 import android.Manifest;
 import android.app.Activity;
@@ -57,6 +57,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ public class AddPlaces extends AppCompatActivity {
     private Uri imageuri;
     private double longitude, latitude;
     private boolean updatePhoto = false;
-    private EditText longitudetext,latitudetext,placeName, placeAddress, placeDiscription, placestate, placeContry, placepincode;
+    private EditText longitudetext,latitudetext,placeName, placeAddress, placeDiscription, placestate, placeContry, placepincode,loctionurl;
     private CheckBox hostelCheck, geusthouseCheck, campingspotCheck, otherCheck;
     private Button AddrequestBtn,checkloc,selectImage;
     private Dialog loadingDialog;
@@ -100,9 +101,9 @@ public class AddPlaces extends AppCompatActivity {
         costvalue = findViewById(R.id.costvluetext);
         placeImage = findViewById(R.id.placeImageSelect);
         placeName = findViewById(R.id.placetitlenew);
-        selectImage=findViewById(R.id.selectImage);
-        longitudetext=findViewById(R.id.Longitude);
-        latitudetext=findViewById(R.id.latitude);
+        selectImage = findViewById(R.id.selectImage);
+        longitudetext = findViewById(R.id.Longitude);
+        latitudetext = findViewById(R.id.latitude);
         placeAddress = findViewById(R.id.placelocaladdress);
         placeDiscription = findViewById(R.id.placeDescription);
         hostelCheck = findViewById(R.id.hostelcheck);
@@ -113,14 +114,14 @@ public class AddPlaces extends AppCompatActivity {
         placeContry = findViewById(R.id.placelocalContry);
         placepincode = findViewById(R.id.placelocalpincode);
         AddrequestBtn = findViewById(R.id.requestPlaceBtnnew);
-        checkloc=findViewById(R.id.checkLoc);
+        checkloc = findViewById(R.id.checkLoc);
         loadingDialog = new Dialog(AddPlaces.this);
         loadingDialog.setContentView(R.layout.loading_progress_bar);
         loadingDialog.setCancelable(false);
         loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         categoryName = getIntent().getStringExtra("Category");
-
+        loctionurl = findViewById(R.id.location_URL);
 //        findViewById(R.id.open_place_picker_button).setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -139,19 +140,19 @@ public class AddPlaces extends AppCompatActivity {
         checkloc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                latitude =Double.parseDouble(latitudetext.getText().toString());
+                latitude = Double.parseDouble(latitudetext.getText().toString());
                 longitude = Double.parseDouble(longitudetext.getText().toString());
                 Geocoder geocoder = new Geocoder(AddPlaces.this, Locale.getDefault());
                 //List<Address> addresses =geocoder.getFromLocation(latitude, longitude, 1);
 
                 try {
-                    List < Address > addresses = geocoder.getFromLocation(latitude, longitude, 1);
+                    List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
                     String city = addresses.get(0).getLocality();
                     String state = addresses.get(0).getAdminArea();
                     String country = addresses.get(0).getCountryName();
                     String postalCode = addresses.get(0).getPostalCode();
                     String knownName = addresses.get(0).getFeatureName();
-                    
+
                     //txt_paddress.setText(address);
                     placeContry.setText(country);
                     placestate.setText(state);
@@ -249,154 +250,177 @@ public class AddPlaces extends AppCompatActivity {
         });
         //////seek Bar  code end
         registerResult();
-      selectImage.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              Intent intent=new Intent(MediaStore.ACTION_PICK_IMAGES);
-              resultLauncher.launch(intent);
-          }
-      });
+        selectImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MediaStore.ACTION_PICK_IMAGES);
+                resultLauncher.launch(intent);
+            }
+        });
         AddrequestBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!TextUtils.isEmpty(placestate.getText())) {
-                    if (!TextUtils.isEmpty(placeName.getText())) {
-                        if (!TextUtils.isEmpty(placeAddress.getText())) {
-                            if (!TextUtils.isEmpty(placeDiscription.getText())) {
-                                addPlace();
+                if (!TextUtils.isEmpty(loctionurl.getText())) {
+                    if (!TextUtils.isEmpty(placestate.getText())) {
+                        if (!TextUtils.isEmpty(placeName.getText())) {
+                            if (!TextUtils.isEmpty(placeAddress.getText())) {
+                                if (!TextUtils.isEmpty(placeDiscription.getText())) {
+                                    addPlace();
+                                } else {
+                                    placeDiscription.requestFocus();
+                                    Toast.makeText(AddPlaces.this, "please add place decription", Toast.LENGTH_SHORT).show();
+                                }
                             } else {
-                                placeDiscription.requestFocus();
-                                Toast.makeText(AddPlaces.this, "please add place decription", Toast.LENGTH_SHORT).show();
+                                placeAddress.requestFocus();
+                                Toast.makeText(AddPlaces.this, "please add place address", Toast.LENGTH_SHORT).show();
                             }
                         } else {
-                            placeAddress.requestFocus();
-                            Toast.makeText(AddPlaces.this, "please add place address", Toast.LENGTH_SHORT).show();
+                            placeName.requestFocus();
+                            Toast.makeText(AddPlaces.this, "please add place decription", Toast.LENGTH_SHORT).show();
                         }
                     } else {
-                        placeName.requestFocus();
-                        Toast.makeText(AddPlaces.this, "please add place decription", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPlaces.this, "Please select location of place", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(AddPlaces.this, "Please select location of place", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
-
-    }
-
-    private void addPlace() {
-        if (updatePhoto) {
-            loadingDialog.show();
-            Date c = Calendar.getInstance().getTime();
-            SimpleDateFormat df = new SimpleDateFormat("ddMMyyyy");
-            String datefinal = df.format(c);
-            final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("places/" + placeName.getText().toString() + datefinal + ".jpg");
-            if (imageuri != null) {
-                Glide.with(AddPlaces.this).asBitmap().load(imageuri).into(new ImageViewTarget<Bitmap>(placeImage) {
-                    @Override
-                    public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
-
-                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                        resource.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                        byte[] data = baos.toByteArray();
-
-                        UploadTask uploadTask = storageReference.putBytes(data);
-                        uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<Uri> task) {
-                                            if (task.isSuccessful()) {
-                                                imageuri = task.getResult();
-                                                Map<String, Object> updatedata = new HashMap<>();
-                                                updatedata.put("verified", (boolean) true);
-                                                updatedata.put("place_Image", task.getResult().toString());
-                                                updatedata.put("place_Name", placeName.getText().toString());
-                                                updatedata.put("place_state", placestate.getText().toString());
-                                                updatedata.put("place_country", placeContry.getText().toString());
-                                                updatedata.put("place_pincode", placepincode.getText().toString());
-                                                updatedata.put("place_latitude", (double) latitude);
-                                                updatedata.put("place_longitude", (double) longitude);
-                                                updatedata.put("place_address", placeAddress.getText().toString());
-                                                updatedata.put("place_description", placeDiscription.getText().toString());
-                                                updatedata.put("road_condition", roadProgress);
-                                                updatedata.put("sefety_level", sefetyProgress);
-                                                updatedata.put("tourist_level", touristProgress);
-                                                updatedata.put("adventure_level", adventureProgress);
-                                                updatedata.put("cost_level", costProgress);
-                                                updatedata.put("Category", categoryName);
-                                                String hostel = "";
-                                                String guesthouse = "";
-                                                String campingspot = "";
-                                                String other = "";
-                                                if (hostelCheck.isChecked()) {
-                                                    hostel = "hostel";
-                                                }
-                                                if (geusthouseCheck.isChecked()) {
-                                                    guesthouse = "guesthouse";
-                                                }
-                                                if (campingspotCheck.isChecked()) {
-                                                    campingspot = "camping spot";
-                                                }
-                                                if (otherCheck.isChecked()) {
-                                                    other = "other";
-                                                }
-                                                updatedata.put("places_to_stay", hostel + " " + guesthouse + " " + campingspot + " " + other);
-
-                                                FirebaseFirestore.getInstance().collection("PLACES").document(placeName.getText().toString())
-                                                        .set(updatedata).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            FirebaseFirestore.getInstance().collection("Category").document(categoryName).collection("PLACES").document(categoryName + "PLACES").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                                                                @Override
-                                                                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                                                                    long placeseslistSize = (long) documentSnapshot.get("no_of_places");
-                                                                    Map<String, Object> categoryPlace = new HashMap<>();
-                                                                    categoryPlace.put("no_of_places", (long) (placeseslistSize + 1));
-                                                                    categoryPlace.put("places_ID_" + (placeseslistSize + 1), placeName.getText().toString());
-                                                                    categoryPlace.put("verified_" + (placeseslistSize + 1), true);
-                                                                    FirebaseFirestore.getInstance().collection("Category").document(categoryName).collection("PLACES").document(categoryName + "PLACES").update(categoryPlace);
-                                                                }
-                                                            });
-                                                            Toast.makeText(AddPlaces.this, "Your Request submited successfully", Toast.LENGTH_SHORT).show();
-                                                        } else {
-                                                            String error = task.getException().getMessage();
-                                                            Toast.makeText(AddPlaces.this, error, Toast.LENGTH_SHORT).show();
-                                                        }
-                                                        loadingDialog.dismiss();
-                                                    }
-                                                });
-
-                                            } else {
-                                                loadingDialog.dismiss();
-                                                String error = task.getException().getMessage();
-                                                Toast.makeText(AddPlaces.this, error, Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-                                } else {
-                                    loadingDialog.dismiss();
-                                    String error = task.getException().getMessage();
-                                    Toast.makeText(AddPlaces.this, error, Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-                    }
-
-                    @Override
-                    protected void setResource(@Nullable Bitmap resource) {
-                    }
-                });
-            }
-
+            });
 
         }
 
 
-    }
+
+        private void addPlace () {
+            if (updatePhoto) {
+                loadingDialog.show();
+                Date c = Calendar.getInstance().getTime();
+                SimpleDateFormat df = new SimpleDateFormat("ddMMyyyy");
+                String datefinal = df.format(c);
+                final StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("places/" + placeName.getText().toString() + datefinal + ".jpg");
+                if (imageuri != null) {
+                    Glide.with(AddPlaces.this).asBitmap().load(imageuri).into(new ImageViewTarget<Bitmap>(placeImage) {
+                        @Override
+                        public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
+
+                            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                            resource.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                            byte[] data = baos.toByteArray();
+
+                            UploadTask uploadTask = storageReference.putBytes(data);
+                            uploadTask.addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        storageReference.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Uri> task) {
+                                                if (task.isSuccessful()) {
+                                                    String fullname=placeName.getText().toString().toLowerCase()+" "+placestate.getText().toString().toLowerCase()+" "+placeContry.getText().toString().toLowerCase()  +" "+placepincode.getText().toString().toLowerCase() +" "+placeAddress.getText().toString().toLowerCase();
+                                                    String[] tag=fullname.split(" ");
+                                                    List<String> tags= Arrays.asList(tag);
+                                                    imageuri = task.getResult();
+                                                    Map<String, Object> updatedata = new HashMap<>();
+                                                    updatedata.put("verified", (boolean) true);
+                                                    updatedata.put("place_Image", task.getResult().toString());
+                                                    updatedata.put("place_Name", placeName.getText().toString());
+                                                    updatedata.put("place_state", placestate.getText().toString());
+                                                    updatedata.put("place_country", placeContry.getText().toString());
+                                                    updatedata.put("place_pincode", placepincode.getText().toString());
+                                                    updatedata.put("place_latitude", (double) latitude);
+                                                    updatedata.put("place_longitude", (double) longitude);
+                                                    updatedata.put("place_address", placeAddress.getText().toString());
+                                                    updatedata.put("place_description", placeDiscription.getText().toString());
+                                                    updatedata.put("road_condition", roadProgress);
+                                                    updatedata.put("sefety_level", sefetyProgress);
+                                                    updatedata.put("tourist_level", touristProgress);
+                                                    updatedata.put("adventure_level", adventureProgress);
+                                                    updatedata.put("cost_level", costProgress);
+                                                    updatedata.put("Category", categoryName);
+                                                    updatedata.put("tags", tags);
+                                                    updatedata.put("location_url", loctionurl.getText().toString());
+                                                    String hostel = "";
+                                                    String guesthouse = "";
+                                                    String campingspot = "";
+                                                    String other = "";
+                                                    if (hostelCheck.isChecked()) {
+                                                        hostel = "hostel";
+                                                    }
+                                                    if (geusthouseCheck.isChecked()) {
+                                                        guesthouse = "guesthouse";
+                                                    }
+                                                    if (campingspotCheck.isChecked()) {
+                                                        campingspot = "camping spot";
+                                                    }
+                                                    if (otherCheck.isChecked()) {
+                                                        other = "other";
+                                                    }
+                                                    updatedata.put("places_to_stay", hostel + " " + guesthouse + " " + campingspot + " " + other);
+
+                                                    FirebaseFirestore.getInstance().collection("PLACES").document(placeName.getText().toString())
+                                                            .set(updatedata).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                @Override
+                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                    if (task.isSuccessful()) {
+                                                                        FirebaseFirestore.getInstance().collection("Category").document(categoryName).collection("PLACES").document(categoryName + "PLACES").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                                            @Override
+                                                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                                long placeseslistSize = (long) documentSnapshot.get("no_of_places");
+                                                                                Map<String, Object> categoryPlace = new HashMap<>();
+                                                                                categoryPlace.put("no_of_places", (long) (placeseslistSize + 1));
+                                                                                categoryPlace.put("places_ID_" + (placeseslistSize + 1), placeName.getText().toString());
+                                                                                categoryPlace.put("verified_" + (placeseslistSize + 1), true);
+                                                                                FirebaseFirestore.getInstance().collection("Category").document(categoryName).collection("PLACES").document(categoryName + "PLACES").update(categoryPlace);
+                                                                            }
+                                                                        });
+                                                                        FirebaseFirestore.getInstance().collection("Category").document("HOME").collection("PLACES").document("HOME" + "PLACES").get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                                                            @Override
+                                                                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                                                                long placeseslistSize = (long) documentSnapshot.get("no_of_places");
+                                                                                Map<String, Object> categoryPlace = new HashMap<>();
+                                                                                categoryPlace.put("no_of_places", (long) (placeseslistSize + 1));
+                                                                                categoryPlace.put("places_ID_" + (placeseslistSize + 1), placeName.getText().toString());
+                                                                                categoryPlace.put("verified_" + (placeseslistSize + 1), true);
+                                                                                FirebaseFirestore.getInstance().collection("Category").document("HOME").collection("PLACES").document("HOME" + "PLACES").update(categoryPlace);
+                                                                            }
+                                                                        });
+
+                                                                        Toast.makeText(AddPlaces.this, "Your Request submited successfully", Toast.LENGTH_SHORT).show();
+                                                                    } else {
+                                                                        String error = task.getException().getMessage();
+                                                                        Toast.makeText(AddPlaces.this, error, Toast.LENGTH_SHORT).show();
+                                                                    }
+                                                                    loadingDialog.dismiss();
+                                                                }
+                                                            });
+
+                                                } else {
+                                                    loadingDialog.dismiss();
+                                                    String error = task.getException().getMessage();
+                                                    Toast.makeText(AddPlaces.this, error, Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        loadingDialog.dismiss();
+                                        String error = task.getException().getMessage();
+                                        Toast.makeText(AddPlaces.this, error, Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+
+                        @Override
+                        protected void setResource(@Nullable Bitmap resource) {
+                        }
+                    });
+                }
+
+
+            }
+
+
+        }
 
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -414,34 +438,33 @@ public class AddPlaces extends AppCompatActivity {
 //                }
 //            }
 //    }
-    private void registerResult(){
-        resultLauncher=registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
-            @Override
-            public void onActivityResult(ActivityResult o) {
-                try {
+private void registerResult() {
+            resultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult o) {
+                    try {
 
 
-                    imageuri = o.getData().getData();
-                    updatePhoto = true;
-                    Glide.with(AddPlaces.this).load(imageuri).apply(new RequestOptions().placeholder(R.drawable.ic_local_library_black_24dp)).into(placeImage);
-                }catch (Exception e){
+                        imageuri = o.getData().getData();
+                        updatePhoto = true;
+                        Glide.with(AddPlaces.this).load(imageuri).apply(new RequestOptions().placeholder(R.drawable.ic_local_library_black_24dp)).into(placeImage);
+                    } catch (Exception e) {
 
+                    }
                 }
-            }
-        });
-    }
-
-
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            finish();
-            return true;
+            });
         }
-        return super.onOptionsItemSelected(item);
+
+
+        @Override
+        public boolean onOptionsItemSelected (@NonNull MenuItem item){
+            int id = item.getItemId();
+            if (id == android.R.id.home) {
+                finish();
+                return true;
+            }
+            return super.onOptionsItemSelected(item);
+        }
+
+
     }
-
-
-}
