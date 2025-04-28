@@ -1,5 +1,4 @@
 package com.example.myplaces;
-
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -15,9 +14,7 @@ import android.widget.Toast;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
 
 import com.example.myplaces.Models.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,18 +22,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.auth.User;
+
+import java.util.Objects;
 
 import io.paperdb.Paper;
 
 public class LoginActivity extends AppCompatActivity {
     private TextInputEditText loginid, loginPassword;
-    private Button signin;
-    private TextView backBtn,signup;
-    private TextView forgetPassword;
     private Dialog loadingDialog;
     private CheckBox rememberMe;
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,15 +40,15 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login); loadingDialog = new Dialog(LoginActivity.this);
         loadingDialog.setContentView(R.layout.loading_progress_bar);
         loadingDialog.setCancelable(false);
-        loadingDialog.getWindow().setBackgroundDrawable(getDrawable(R.drawable.slider_background));
+        Objects.requireNonNull(loadingDialog.getWindow()).setBackgroundDrawable(getDrawable(R.drawable.slider_background));
         loadingDialog.getWindow().setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         loginid = findViewById(R.id.userEmail);
         loginPassword = findViewById(R.id.userPass);
-        signup = findViewById(R.id.joinus_loginpage);
-        signin = findViewById(R.id.SignInbtn_login);
-        backBtn=findViewById(R.id.backbtn);
+        TextView signup = findViewById(R.id.joinus_loginpage);
+        Button signin = findViewById(R.id.SignInbtn_login);
+        TextView backBtn = findViewById(R.id.backbtn);
         rememberMe=findViewById(R.id.checkBox);
-        forgetPassword = findViewById(R.id.forget_pass);
+        TextView forgetPassword = findViewById(R.id.forget_pass);
         Paper.init(this);
         forgetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
                     finish();
                 } else {
                     loadingDialog.dismiss();
-                    String error = task.getException().getMessage();
+                    String error = Objects.requireNonNull(task.getException()).getMessage();
                     Toast.makeText(LoginActivity.this, error, Toast.LENGTH_SHORT).show();
                 }
             }
